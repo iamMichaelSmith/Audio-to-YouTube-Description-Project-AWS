@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Project Overview</title>
+</head>
+<body>
+    <h3>### AWS Project Overview</h3>
+
+    <h4>#### <strong>Project Purpose:</strong></h4>
+    <p>The purpose of this project is to streamline and automate the process of converting audio files, such as podcasts or audiobooks, into engaging and precise YouTube descriptions. As a recording studio owner, I've encountered continuous challenges with clients needing to efficiently generate accurate descriptions for their audio content. This process has been time-consuming and prone to errors when done manually. To address this issue, I decided to build a system that leverages AWS services to handle this task with precision and automation, ultimately saving time and improving the quality of the output.</p>
+
+    <h4>#### <strong>Service Definitions:</strong></h4>
+    <ul>
+        <li><strong>Amazon S3 (Simple Storage Service):</strong> Amazon S3 is a scalable object storage service that allows you to store and retrieve any amount of data at any time. In this project, S3 is used to store the audio files and the generated transcriptions, as well as the final YouTube descriptions.</li>
+        <li><strong>AWS Lambda:</strong> AWS Lambda is a serverless compute service that lets you run code in response to events. Lambda functions are used in this project to trigger processes such as sending audio files to Amazon Transcribe and handling the output from Amazon Bedrock.</li>
+        <li><strong>Amazon Transcribe:</strong> Amazon Transcribe is an automatic speech recognition (ASR) service that makes it easy to convert speech-to-text. This service is used to generate transcriptions from the uploaded audio files.</li>
+        <li><strong>Amazon Bedrock:</strong> Amazon Bedrock is a fully managed service that makes it easy to build and scale AI and machine learning applications. In this project, Bedrock is used to interface with Anthropic Claude 3 for processing the transcriptions into YouTube descriptions.</li>
+        <li><strong>Anthropic Claude 3:</strong> Anthropic Claude 3 is an AI language model that generates human-like text based on prompts. It is used in this project to transform the transcript into a concise and engaging 1500-character YouTube description.</li>
+        <li><strong>Amazon SNS (Simple Notification Service):</strong> Amazon SNS is a fully managed messaging service that can send notifications to subscribers. In this project, SNS is used to send an SMS confirmation and an email notification with the final YouTube description once it has been generated.</li>
+    </ul>
+
+    <h4>#### <strong>Project Workflow:</strong></h4>
+    <ol>
+        <li><strong>Audio File Upload:</strong>
+            <p>An audio file (e.g., a podcast or audiobook) is uploaded to <strong>S3 Bucket 1</strong>.</p>
+        </li>
+        <li><strong>Triggering Transcription:</strong>
+            <p>The upload triggers an AWS Lambda function that sends the audio file to <strong>Amazon Transcribe</strong>.</p>
+        </li>
+        <li><strong>Transcription Storage:</strong>
+            <p>Once the transcription is complete, it is saved to <strong>S3 Bucket 2</strong>.</p>
+        </li>
+        <li><strong>Triggering YouTube Description Generation:</strong>
+            <p>The arrival of the transcription in S3 Bucket 2 triggers another Lambda function, which sends the transcription to <strong>Amazon Bedrock</strong>.</p>
+        </li>
+        <li><strong>Processing with Anthropic Claude 3:</strong>
+            <p>Amazon Bedrock processes the transcription using <strong>Anthropic Claude 3</strong>, which generates a 1500-character YouTube description.</p>
+        </li>
+        <li><strong>Final Output:</strong>
+            <p>The generated description is saved in <strong>S3 Bucket 3</strong>.</p>
+        </li>
+        <li><strong>Notification:</strong>
+            <p>An SNS notification is sent via SMS and email to confirm the description's creation and provide the final output.</p>
+        </li>
+        <li><strong>Future Enhancement:</strong>
+            <p>A <strong>DynamoDB table</strong> will be integrated into the system for better tracking and managing of the transcriptions and descriptions, providing a database to store metadata or logs related to each processed file.</p>
+        </li>
+    </ol>
+
+    <p>This project is designed to be scalable, efficient, and precise, addressing a common need in the recording studio industry for automated content generation. The integration of AWS services ensures reliability and ease of use while allowing for future enhancements like DynamoDB integration.</p>
+</body>
+</html>
