@@ -45,3 +45,11 @@ See `.env.example` for baseline local variable names.
 
 ## License
 MIT (see `LICENSE`).
+
+## Employment Readiness
+This repository includes baseline standards to support hiring and delegation:
+- Clear onboarding in README/docs
+- CI checks for build/test/lint where applicable
+- Handoff/deploy checklist for repeatable operations
+- Secret-safe configuration via `.env.example` or platform secrets
+
